@@ -1,7 +1,7 @@
 package Users;
 
 import Block.Block;
-
+/**The purpose of this class is creat a registered user*/
 public class RegisteredUser extends User {
     protected Block[][] lastBlocksArray;
     protected long lastTakeTime;

@@ -9,7 +9,7 @@ import Interface.DealWithInterface;
 
 import java.util.List;
 import java.util.Scanner;
-
+/**The purpose of this class is to deal with moving and combining of block, when the game system receive a command*/
 public class Operate {
     public final static int WINNUM = 2048;
     public static boolean ifMoving = false;

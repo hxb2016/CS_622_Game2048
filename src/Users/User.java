@@ -1,7 +1,7 @@
 package Users;
 
 import Block.Block;
-
+/**This class is an abstract class*/
 public abstract class User {
     public String username;
     public int age;

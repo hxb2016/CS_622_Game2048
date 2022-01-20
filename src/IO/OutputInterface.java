@@ -1,7 +1,7 @@
 package IO;
 
 import Block.Block;
-
+/**The purpose of this class is to show number blocks interface in console*/
 public class OutputInterface {
     public static void outputInterface(Block[][] blocksArray) {
         /*
@@ -11,15 +11,15 @@ public class OutputInterface {
             for (int j = 0; j < blocks.length; j++) {
                 if (j == blocks.length - 1) {
                     if (blocks[j].number == 0) {
-                        System.out.println(" * ");
+                        System.out.printf("%-8s %n%n", "*");
                     } else {
-                        System.out.println(" " + blocks[j].number + " ");
+                        System.out.printf("%-8d %n%n", blocks[j].number);
                     }
                 } else {
                     if (blocks[j].number == 0) {
-                        System.out.print(" * ");
+                        System.out.printf("%-8s", "*");
                     } else {
-                        System.out.print(" " + blocks[j].number + " ");
+                        System.out.printf("%-8d", blocks[j].number);
                     }
                 }
 

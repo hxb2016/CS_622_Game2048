@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
+/**The purpose of this class is to do test*/
 public class App {
     public static User currentUser;
     public final static int interfaceSize = 4;

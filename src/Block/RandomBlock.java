@@ -5,7 +5,7 @@ import Game2048_test.App;
 
 import java.util.List;
 import java.util.Random;
-
+/**The purpose of this class is to produce a random number block*/
 public class RandomBlock extends Block {
     public RandomBlock() {
         super();

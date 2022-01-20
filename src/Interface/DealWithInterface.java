@@ -4,7 +4,7 @@ import Block.Block;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**The purpose of this class is to get all the number block that are empty*/
 public class DealWithInterface {
     public static List<int[]> getAvailableLocation(Block[][] blocksArray) {
         List<int[]> enableLocation = new ArrayList<>();

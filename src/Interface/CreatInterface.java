@@ -2,7 +2,7 @@ package Interface;
 
 import Block.*;
 import Users.User;
-
+/**The purpose of this class is to init the game*/
 public class CreatInterface {
 
     public static void setInterface(int size, User currentUser) {
