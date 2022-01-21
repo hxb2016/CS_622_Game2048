@@ -9,72 +9,133 @@ import Users.RegisteredUser;
 import Users.UnRegisteredUser;
 import Users.User;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-/**The purpose of this class is to do test*/
+/**
+ * The purpose of this class is to run the game
+ */
 public class App {
     public static User currentUser;
-    public final static int interfaceSize = 4;
+    public final static int interfaceSize = 2;//In order to make test convenient, reduce the interface size from 4 to 2
+    public final static int WINNUM = 16;
+    public static String userDataPath = "src\\UserData\\Data.txt";
 
     public static void main(String[] args) {
         System.out.println("==Welcome to 2048 Game==");
-        System.out.print("Please enter your username: ");
+        System.out.print("Please enter your username to login: ");
         Scanner in = new Scanner(System.in);
         String username = in.next();
-        Map<String, User> usersData = GetUsersData.getUserData("example path");//get local user data(but function I have not finished)
-
-        usersData = new HashMap<>();//because there is file to save the user data, this just is an example data for test
-        usersData.put("Xiaobing", null);//example data
-
-        if (usersData.containsKey(username)) {//if username in the local data, the user is a registered user
-            currentUser = new RegisteredUser("Xiaobing", 30, "Male");//example data in order to avoid program errors
-            System.out.print("You had registered. Do you want to see your last result(y/n): ");
-            String command = in.next();
-            if (command.equals("y")) {//if you want see history data
-                System.out.println("there is no data will show here..., because I have not done");
+        Map<String, User> usersData = null;//get local user data(but function I have not finished)
+        try {
+            usersData = GetUsersData.getUsersData(userDataPath);//Get users' data
+            if (usersData == null) {
+                usersData = new HashMap<>();
             }
-            System.out.println("==New Game==\n");
-            CreatInterface.setInterface(interfaceSize, currentUser);
-            OutputInterface.outputInterface(currentUser.currentBlocksArray);
-        } else {
-            System.out.print("You have not registered, Do you want register now(y/n): ");
-            String command = in.next();
-            if (command.equals("y")) {//if you want register an account for the game
-                currentUser = new RegisteredUser(username, 30, "Male");////example data in order to avoid program errors
-                System.out.println("Good Job! You have registered!");
-            } else {//if you do not want.......
-                currentUser = new UnRegisteredUser();////example data in order to avoid program errors
-                System.out.println("You will start as guest");
-            }
-            System.out.println("==New Game==\n");
-            CreatInterface.setInterface(interfaceSize, currentUser);
-            OutputInterface.outputInterface(currentUser.currentBlocksArray);
-
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
-        Operate.operation();
 
-        System.out.print("Do you want save the result this time? (y/n): ");
+        begin(usersData, username, userDataPath);
+
+        Operate.operation(currentUser);
+
+        end(usersData, username, userDataPath);
+
+
+    }
+
+    public static void begin(Map<String, User> usersData, String username, String userDataPath) {
+        Scanner in = new Scanner(System.in);
+        if (usersData != null && usersData.containsKey(username)) {//if username in the local data, the user is a registered user
+            System.out.print("Good job! Whether to see the last record(y/n): ");
+            String command = in.next();
+            if (command.equals("y")) {//if you want see history data
+                if (((RegisteredUser) usersData.get(username)).lastBlocksArray != null) {//if you have not played the game
+                    OutputInterface.outputInterface(((RegisteredUser) usersData.get(username)).lastBlocksArray);
+                } else {
+                    System.out.println("You have not played.");
+                }
+                System.out.print("Start a New Game? (y/n): ");
+                command = in.next();
+                if (command.equals("y")) {
+                    currentUser = usersData.get(username);
+                } else {
+                    System.out.println("You have quit!");
+                    System.exit(0);
+                }
+            } else {
+                currentUser = usersData.get(username);
+            }
+        } else {
+            System.out.print("Sorry, you have no account. Register now? (y/n): ");
+            String command = in.next();
+            if (command.equals("y")) {//if you want register an account for the game
+                System.out.print("Please enter your Age: ");
+                int age = in.nextInt();
+                System.out.print("Please enter your Gender: ");
+                String gender = in.next();
+                currentUser = new RegisteredUser(username, age, gender);
+                assert usersData != null;
+                usersData.put(username, currentUser);
+
+                try {
+                    SaveUsersData.saveUserData(usersData, userDataPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println("Good Job! Successfully registered!");
+                System.out.print("Start a New Game? (y/n): ");
+                command = in.next();
+                if (!command.equals("y")) {
+                    System.out.println("You have quit!");
+                    System.exit(0);
+                }
+            } else {//if you do not want.......
+                currentUser = new UnRegisteredUser();
+                System.out.println("Start as guest");
+            }
+        }
+        System.out.println("==New Game==\n");
+        CreatInterface.setInterface(interfaceSize, currentUser);
+        OutputInterface.outputInterface(currentUser.currentBlocksArray);
+    }
+
+    public static void end(Map<String, User> usersData, String username, String userDataPath) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Save your record? (y/n): ");
         String command = in.next();
         if (command.equals("y")) {
             if (currentUser.getType().equals("RegisteredUser")) {
-                ((RegisteredUser) currentUser).setData(currentUser);//set the data to prepare for saving
-                usersData.put(currentUser.username, currentUser);
-                SaveUsersData.saveUsersData(usersData, "example path");//example data
-                System.out.println("You have successfully save!");
+                ((RegisteredUser) currentUser).setData();//set the data to prepare for saving
+                try {
+                    SaveUsersData.saveUserData(usersData, userDataPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Successfully save!");
             } else {
-                RegisteredUser newCurrentUser = new RegisteredUser(username, 30, "Male");//example data in order to avoid program errors
+                System.out.print("Please enter your Age: ");
+                int age = in.nextInt();
+                System.out.print("Please enter your Gender: ");
+                String gender = in.next();
+                RegisteredUser newCurrentUser = new RegisteredUser(username, age, gender);
                 newCurrentUser.currentResult = currentUser.currentResult;
                 newCurrentUser.currentTakeTime = currentUser.currentTakeTime;
-                newCurrentUser.setData(newCurrentUser);//set the data to prepare for saving
-                usersData.put(newCurrentUser.username, newCurrentUser);
-                SaveUsersData.saveUsersData(usersData, "example path");//example data
-                System.out.println("You have successfully registered and save!");
+                newCurrentUser.setData();//set the data to prepare for saving
+                usersData.put(username, newCurrentUser);
+                try {
+                    SaveUsersData.saveUserData(usersData, userDataPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Successfully Registered and Save!");
             }
         }
-        System.out.println("==You have quited from the game==");
-
+        System.out.println("==You have quit from the game==");
     }
 }

@@ -18,7 +18,7 @@ public class DealWithInterface {
         return enableLocation;
     }
 
-    private static boolean blockIsEnable(Block block) {
+    public static boolean blockIsEnable(Block block) {
         return block.number == 0;
     }
 }

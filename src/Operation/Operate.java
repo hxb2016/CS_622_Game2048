@@ -5,18 +5,19 @@ import Block.InsideBlock;
 import Block.RandomBlock;
 import Game2048_test.App;
 import IO.OutputInterface;
-import Interface.DealWithInterface;
+import Users.User;
 
-import java.util.List;
 import java.util.Scanner;
-/**The purpose of this class is to deal with moving and combining of block, when the game system receive a command*/
+
+/**
+ * The purpose of this class is to deal with moving and combining of block, when the game system receive a command
+ */
 public class Operate {
-    public final static int WINNUM = 2048;
     public static boolean ifMoving = false;
 
-    public static void operation() {
+    public static void operation(User currentUser) {
         Scanner input = new Scanner(System.in);
-        while (!isWin(App.currentUser.currentBlocksArray) && !isEnd(App.currentUser.currentBlocksArray)) {
+        while (!isWin(currentUser.currentBlocksArray) && !isEnd(currentUser)) {
             System.out.print("Please Enter Next Command(w/a/s/d,Quit press 'k'): ");
             String command = input.next();
 
@@ -26,40 +27,40 @@ public class Operate {
             }
 
             if (command.equals("w") || command.equals("a")) {
-                for (int i = 0; i < App.currentUser.currentBlocksArray.length; i++) {
-                    for (int j = 0; j < App.currentUser.currentBlocksArray[i].length; j++) {
+                for (int i = 0; i < currentUser.currentBlocksArray.length; i++) {
+                    for (int j = 0; j < currentUser.currentBlocksArray[i].length; j++) {
                         switch (command) {
-                            case "w" -> moveUp(App.currentUser.currentBlocksArray[i][j]);
-                            case "a" -> moveLeft(App.currentUser.currentBlocksArray[i][j]);
+                            case "w" -> moveUp(currentUser.currentBlocksArray[i][j],currentUser);
+                            case "a" -> moveLeft(currentUser.currentBlocksArray[i][j],currentUser);
                         }
                     }
                 }
             } else {
-                for (int i = App.currentUser.currentBlocksArray.length - 1; i >= 0; i--) {
-                    for (int j = App.currentUser.currentBlocksArray[i].length - 1; j >= 0; j--) {
+                for (int i = currentUser.currentBlocksArray.length - 1; i >= 0; i--) {
+                    for (int j = currentUser.currentBlocksArray[i].length - 1; j >= 0; j--) {
                         switch (command) {
-                            case "s" -> moveDown(App.currentUser.currentBlocksArray[i][j]);
-                            case "d" -> moveRight(App.currentUser.currentBlocksArray[i][j]);
+                            case "s" -> moveDown(currentUser.currentBlocksArray[i][j],currentUser);
+                            case "d" -> moveRight(currentUser.currentBlocksArray[i][j],currentUser);
                         }
                     }
                 }
             }
 
             if (ifMoving) {//it will generate a random block, if any block has been moved
-                Block randomBlock = new RandomBlock();
-                App.currentUser.currentBlocksArray[randomBlock.location[0]][randomBlock.location[1]] = randomBlock;
+                Block randomBlock = new RandomBlock(currentUser);
+                currentUser.currentBlocksArray[randomBlock.location[0]][randomBlock.location[1]] = randomBlock;
                 ifMoving = false;
             }
 
-            OutputInterface.outputInterface(App.currentUser.currentBlocksArray);
+            OutputInterface.outputInterface(currentUser.currentBlocksArray);
         }
-        if (isEnd(App.currentUser.currentBlocksArray)) {
+        if (isEnd(currentUser)) {
             System.out.println("===Game Over===");
-            if (isWin(App.currentUser.currentBlocksArray)) {
-                App.currentUser.currentResult = "win";
+            if (isWin(currentUser.currentBlocksArray)) {
+                currentUser.currentResult = "win";
                 System.out.println("YOU WIN!!!");
             } else {
-                App.currentUser.currentResult = "fail";
+                currentUser.currentResult = "fail";
                 System.out.println("Sorry Your Fail!");
             }
             System.out.println("You take 0 minute and 0 second");
@@ -67,84 +68,84 @@ public class Operate {
     }
 
     //==============================================================================
-    public static void moveUp(Block block) {
+    public static void moveUp(Block block, User currentUser) {
         boolean ifBreak = false;
-        while (ifCanMoveUp(block) && !ifBreak) {
+        while (ifCanMoveUp(block,currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
-            if (App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number != 0) {//judge if the first combining happen
                 ifBreak = true;
                 block.ifCombine = true;
             }
-            block.number = App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number + block.number;
-            block.location = App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].location;
-            App.currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
+            block.number = currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number + block.number;
+            block.location = currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].location;
+            currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
 
-            App.currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
+            currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
         }
     }
 
 
-    public static void moveLeft(Block block) {
+    public static void moveLeft(Block block, User currentUser) {
 
         boolean ifBreak = false;
-        while (ifCanMoveLeft(block) && !ifBreak) {
+        while (ifCanMoveLeft(block,currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
 
-            if (App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number != 0) {//judge if the first combining happen
                 ifBreak = true;
                 block.ifCombine = true;
             }
-            block.number = App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number + block.number;
-            block.location = App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].location;
-            App.currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
-            App.currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
-
-        }
-    }
-
-
-    public static void moveDown(Block block) {
-        boolean ifBreak = false;
-        while (ifCanMoveDown(block) && !ifBreak) {
-            ifMoving = true;
-            Block newBlock = new InsideBlock(0, block.location);
-            if (App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number != 0) {//judge if the first combining happen
-                ifBreak = true;
-                block.ifCombine = true;
-            }
-
-            block.number = App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number + block.number;
-            block.location = App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].location;
-            App.currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
-
-            App.currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
+            block.number = currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number + block.number;
+            block.location = currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].location;
+            currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
+            currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
 
         }
     }
 
 
-    public static void moveRight(Block block) {
+    public static void moveDown(Block block, User currentUser) {
         boolean ifBreak = false;
-        while (ifCanMoveRight(block) && !ifBreak) {
+        while (ifCanMoveDown(block,currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
-            if (App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number != 0) {//judge if the first combining happen
                 ifBreak = true;
                 block.ifCombine = true;
             }
 
-            block.number = App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number + block.number;
-            block.location = App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].location;
-            App.currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
+            block.number = currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number + block.number;
+            block.location = currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].location;
+            currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
 
-            App.currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
+            currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
+
+        }
+    }
+
+
+    public static void moveRight(Block block, User currentUser) {
+        boolean ifBreak = false;
+        while (ifCanMoveRight(block, currentUser) && !ifBreak) {
+            ifMoving = true;
+            Block newBlock = new InsideBlock(0, block.location);
+            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number != 0) {//judge if the first combining happen
+                ifBreak = true;
+                block.ifCombine = true;
+            }
+
+            block.number = currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number + block.number;
+            block.location = currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].location;
+            currentUser.currentBlocksArray[block.location[0]][block.location[1]] = block;
+
+            currentUser.currentBlocksArray[newBlock.location[0]][newBlock.location[1]] = newBlock;
         }
     }
 
     //========================================================================================================
-    public static boolean ifCanMoveUp(Block block) {//judge if the block can move up
+    public static boolean ifCanMoveUp(Block block, User currentUser) {//judge if the block can move up
         if (block.location[0] == 0) {//if the block on the edge, it can not move
             return false;
         }
@@ -153,18 +154,18 @@ public class Operate {
             return false;
         }
 
-        if (App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].ifCombine) {
+        if (currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].ifCombine) {
             //if the next block of the block on the direction of movement has been combined, it can not move
             return false;
         }
 
         //if the next block.number of the block on the direction of movement equal to 0 or the block.number, it can move
-        return App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number == 0
-                || App.currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number == block.number;
+        return currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number == 0
+                || currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number == block.number;
     }
 
 
-    public static boolean ifCanMoveLeft(Block block) {// judge the block can move to left
+    public static boolean ifCanMoveLeft(Block block, User currentUser) {// judge the block can move to left
         if (block.location[1] == 0) {
             return false;
         }
@@ -173,17 +174,17 @@ public class Operate {
             return false;
         }
 
-        if (App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].ifCombine) {
+        if (currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].ifCombine) {
             return false;
         }
 
-        return App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number == 0
-                || App.currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number == block.number;
+        return currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number == 0
+                || currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number == block.number;
 
     }
 
 
-    public static boolean ifCanMoveDown(Block block) {// judge the block can move to down
+    public static boolean ifCanMoveDown(Block block, User currentUser) {// judge the block can move to down
         if (block.location[0] == App.interfaceSize - 1) {
             return false;
         }
@@ -192,16 +193,16 @@ public class Operate {
             return false;
         }
 
-        if (App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].ifCombine) {
+        if (currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].ifCombine) {
             return false;
         }
 
-        return App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number == 0
-                || App.currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number == block.number;
+        return currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number == 0
+                || currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number == block.number;
     }
 
 
-    public static boolean ifCanMoveRight(Block block) {// judge the block can move to right
+    public static boolean ifCanMoveRight(Block block, User currentUser) {// judge the block can move to right
         if (block.location[1] == App.interfaceSize - 1) {
             return false;
         }
@@ -210,19 +211,25 @@ public class Operate {
             return false;
         }
 
-        if (App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].ifCombine) {
+        if (currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].ifCombine) {
             return false;
         }
 
-        return App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number == 0
-                || App.currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number == block.number;
+        return currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number == 0
+                || currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number == block.number;
 
     }
 
 
-    public static boolean isEnd(Block[][] blocksArray) {
-        List<int[]> enableLocation = DealWithInterface.getAvailableLocation(blocksArray);
-        return enableLocation.size() == 0;
+    public static boolean isEnd(User currentUser) {
+        for (Block[] blocks : currentUser.currentBlocksArray) {
+            for (Block block : blocks) {
+                if (ifCanMoveDown(block, currentUser) || ifCanMoveUp(block, currentUser) || ifCanMoveLeft(block, currentUser) || ifCanMoveRight(block, currentUser)) {
+                    return isWin(currentUser.currentBlocksArray);
+                }
+            }
+        }
+        return true;
     }
 
     public static boolean isWin(Block[][] blocksArray) {
@@ -232,6 +239,6 @@ public class Operate {
                 maxNum = Math.max(maxNum, block.number);
             }
         }
-        return maxNum >= WINNUM;
+        return maxNum >= App.WINNUM;
     }
 }

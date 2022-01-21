@@ -14,10 +14,10 @@ public class CreatInterface {
             }
         }
 
-        Block randomBlock1 = new RandomBlock();
+        Block randomBlock1 = new RandomBlock(currentUser);
         currentUser.currentBlocksArray[randomBlock1.location[0]][randomBlock1.location[1]] = randomBlock1;
 
-        Block randomBlock2 = new RandomBlock();
+        Block randomBlock2 = new RandomBlock(currentUser);
         currentUser.currentBlocksArray[randomBlock2.location[0]][randomBlock2.location[1]] = randomBlock2;
     }
 

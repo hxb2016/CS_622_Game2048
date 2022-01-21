@@ -22,7 +22,6 @@ public class OutputInterface {
                         System.out.printf("%-8d", blocks[j].number);
                     }
                 }
-
                 blocks[j].ifCombine = false;//clean change from last moving
             }
         }

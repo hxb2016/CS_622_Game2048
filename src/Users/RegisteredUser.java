@@ -1,25 +1,33 @@
 package Users;
 
 import Block.Block;
-/**The purpose of this class is creat a registered user*/
+
+/**
+ * The purpose of this class is creat a registered user
+ */
 public class RegisteredUser extends User {
-    protected Block[][] lastBlocksArray;
-    protected long lastTakeTime;
-    protected Block[][] bestBlocksArray = null;
-    protected long bestTakeTime = 0;
+    public Block[][] lastBlocksArray;
+    public long lastTakeTime;
+    public Block[][] bestBlocksArray = null;
+    public long bestTakeTime = 0;
 
 
     public RegisteredUser(String name, int age, String gender) {
         super(name, age, gender);
     }
 
-    public void setData(User currentUser) {
-        this.lastBlocksArray = currentUser.currentBlocksArray;
-        this.lastTakeTime = currentUser.currentTakeTime;
-        if (currentUser.currentResult.endsWith("win")) {
+    public void setData() {
+        this.lastBlocksArray = this.currentBlocksArray;
+        this.lastTakeTime = this.currentTakeTime;
+        if (this.currentResult.endsWith("win")) {
             if (this.bestBlocksArray == null) {
-                this.bestTakeTime = currentUser.currentTakeTime;
-                this.bestBlocksArray = currentUser.currentBlocksArray;
+                this.bestTakeTime = this.currentTakeTime;
+                this.bestBlocksArray = this.currentBlocksArray;
+            } else {
+                if (this.bestTakeTime > this.currentTakeTime) {
+                    this.bestTakeTime = this.currentTakeTime;
+                    this.bestBlocksArray = this.currentBlocksArray;
+                }
             }
         }
 

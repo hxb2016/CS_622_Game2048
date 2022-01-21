@@ -1,15 +1,15 @@
 package Block;
 
 import Interface.DealWithInterface;
-import Game2048_test.App;
+import Users.User;
 
 import java.util.List;
 import java.util.Random;
 /**The purpose of this class is to produce a random number block*/
 public class RandomBlock extends Block {
-    public RandomBlock() {
+    public RandomBlock(User user) {
         super();
-        List<int[]> enableLocations = DealWithInterface.getAvailableLocation(App.currentUser.currentBlocksArray);
+        List<int[]> enableLocations = DealWithInterface.getAvailableLocation(user.currentBlocksArray);
         Random random = new Random();
 
         int randomNum = random.nextInt(1, 3) * 2;

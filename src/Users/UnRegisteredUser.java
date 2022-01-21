@@ -8,7 +8,7 @@ public class UnRegisteredUser extends User {
 
     @Override
     public String getInformation() {
-        return "You have not registered";
+        return "You have not registered.";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class UnRegisteredUser extends User {
 
     @Override
     public void setIntroduce(String introduction) {
-        System.out.println("You cannot set information, because you have not registered");
+        this.introduce = "You have not registered.";
     }
 
 }

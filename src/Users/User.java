@@ -1,8 +1,12 @@
 package Users;
 
 import Block.Block;
+
+import java.io.Serializable;
+
 /**This class is an abstract class*/
-public abstract class User {
+public abstract class User implements Serializable {
+    public static final long serialVersionUID = 1L;
     public String username;
     public int age;
     public String gender;

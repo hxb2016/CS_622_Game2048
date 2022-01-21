@@ -2,10 +2,18 @@ package IO;
 
 import Users.User;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Map;
-/**The purpose of this class is to save users data*/
+
+/**
+ * The purpose of this class is to save users data
+ */
 public class SaveUsersData {
-    public static void saveUsersData(Map<String, User> usersData, String path){
-        System.out.println("this just is an example");
+    public static void saveUserData(Map<String, User> usersData, String path) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path));
+        objectOutputStream.writeObject(usersData);
+        objectOutputStream.close();
     }
 }
