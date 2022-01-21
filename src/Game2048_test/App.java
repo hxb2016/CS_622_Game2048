@@ -35,6 +35,7 @@ public class App {
                 usersData = new HashMap<>();
             }
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error happened when get data.");
             e.printStackTrace();
         }
 
@@ -85,6 +86,7 @@ public class App {
                 try {
                     SaveUsersData.saveUserData(usersData, userDataPath);
                 } catch (IOException e) {
+                    System.out.println("Error happened when save data.");
                     e.printStackTrace();
                 }
 
@@ -115,6 +117,7 @@ public class App {
                 try {
                     SaveUsersData.saveUserData(usersData, userDataPath);
                 } catch (IOException e) {
+                    System.out.println("Error happened when save data.");
                     e.printStackTrace();
                 }
                 System.out.println("Successfully save!");
@@ -131,6 +134,7 @@ public class App {
                 try {
                     SaveUsersData.saveUserData(usersData, userDataPath);
                 } catch (IOException e) {
+                    System.out.println("Error happened when save data.");
                     e.printStackTrace();
                 }
                 System.out.println("Successfully Registered and Save!");

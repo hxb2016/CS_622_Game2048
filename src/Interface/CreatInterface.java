@@ -1,6 +1,8 @@
 package Interface;
 
-import Block.*;
+import Block.RandomBlock;
+import Block.Block;
+import Block.InsideBlock;
 import Users.User;
 /**The purpose of this class is to init the game*/
 public class CreatInterface {
