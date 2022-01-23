@@ -38,14 +38,12 @@ public class App {
             System.out.println("Error happened when get data.");
             e.printStackTrace();
         }
-
-
+        
         begin(usersData, username, userDataPath);
 
         Operate.operation(currentUser);
 
         end(usersData, username, userDataPath);
-
 
     }
 
@@ -128,6 +126,7 @@ public class App {
                 String gender = in.next();
                 RegisteredUser newCurrentUser = new RegisteredUser(username, age, gender);
                 newCurrentUser.currentResult = currentUser.currentResult;
+                newCurrentUser.currentBlocksArray = currentUser.currentBlocksArray;
                 newCurrentUser.currentTakeTime = currentUser.currentTakeTime;
                 newCurrentUser.setData();//set the data to prepare for saving
                 usersData.put(username, newCurrentUser);
