@@ -15,6 +15,9 @@ import java.util.Scanner;
 public class Operate {
     public static boolean ifMoving = false;
 
+    /**
+     * The purpose of operation method is to deal with moving and combining of block, when the game system receive a command
+     */
     public static void operation(User currentUser) {
         Scanner input = new Scanner(System.in);
         while (!isWin(currentUser.currentBlocksArray) && !isEnd(currentUser)) {
@@ -30,8 +33,8 @@ public class Operate {
                 for (int i = 0; i < currentUser.currentBlocksArray.length; i++) {
                     for (int j = 0; j < currentUser.currentBlocksArray[i].length; j++) {
                         switch (command) {
-                            case "w" -> moveUp(currentUser.currentBlocksArray[i][j],currentUser);
-                            case "a" -> moveLeft(currentUser.currentBlocksArray[i][j],currentUser);
+                            case "w" -> moveUp(currentUser.currentBlocksArray[i][j], currentUser);
+                            case "a" -> moveLeft(currentUser.currentBlocksArray[i][j], currentUser);
                         }
                     }
                 }
@@ -39,8 +42,8 @@ public class Operate {
                 for (int i = currentUser.currentBlocksArray.length - 1; i >= 0; i--) {
                     for (int j = currentUser.currentBlocksArray[i].length - 1; j >= 0; j--) {
                         switch (command) {
-                            case "s" -> moveDown(currentUser.currentBlocksArray[i][j],currentUser);
-                            case "d" -> moveRight(currentUser.currentBlocksArray[i][j],currentUser);
+                            case "s" -> moveDown(currentUser.currentBlocksArray[i][j], currentUser);
+                            case "d" -> moveRight(currentUser.currentBlocksArray[i][j], currentUser);
                         }
                     }
                 }
@@ -68,12 +71,16 @@ public class Operate {
     }
 
     //==============================================================================
+
+    /**
+     * The purpose of moveUp method is to deal with blocks which need move up
+     */
     public static void moveUp(Block block, User currentUser) {
         boolean ifBreak = false;
-        while (ifCanMoveUp(block,currentUser) && !ifBreak) {
+        while (ifCanMoveUp(block, currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
-            if (currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number != 0) {//judge that if a block first time happen combining
                 ifBreak = true;
                 block.ifCombine = true;
             }
@@ -85,15 +92,17 @@ public class Operate {
         }
     }
 
-
+    /**
+     * The purpose of moveLeft method is to deal with blocks which need move left
+     */
     public static void moveLeft(Block block, User currentUser) {
 
         boolean ifBreak = false;
-        while (ifCanMoveLeft(block,currentUser) && !ifBreak) {
+        while (ifCanMoveLeft(block, currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
 
-            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] - 1].number != 0) {//judge that if a block first time happen combining
                 ifBreak = true;
                 block.ifCombine = true;
             }
@@ -105,13 +114,15 @@ public class Operate {
         }
     }
 
-
+    /**
+     * The purpose of moveDown method is to deal with blocks which need move down
+     */
     public static void moveDown(Block block, User currentUser) {
         boolean ifBreak = false;
-        while (ifCanMoveDown(block,currentUser) && !ifBreak) {
+        while (ifCanMoveDown(block, currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
-            if (currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number != 0) {//judge that if a block first time happen combining
                 ifBreak = true;
                 block.ifCombine = true;
             }
@@ -125,13 +136,15 @@ public class Operate {
         }
     }
 
-
+    /**
+     * The purpose of moveRight method is to deal with blocks which need move right
+     */
     public static void moveRight(Block block, User currentUser) {
         boolean ifBreak = false;
         while (ifCanMoveRight(block, currentUser) && !ifBreak) {
             ifMoving = true;
             Block newBlock = new InsideBlock(0, block.location);
-            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number != 0) {//judge if the first combining happen
+            if (currentUser.currentBlocksArray[block.location[0]][block.location[1] + 1].number != 0) {//judge that if a block first time happen combining
                 ifBreak = true;
                 block.ifCombine = true;
             }
@@ -145,7 +158,11 @@ public class Operate {
     }
 
     //========================================================================================================
-    public static boolean ifCanMoveUp(Block block, User currentUser) {//judge if the block can move up
+
+    /**
+     * The purpose of ifCanMoveUp method is to judge that if a block can move up
+     */
+    public static boolean ifCanMoveUp(Block block, User currentUser) {
         if (block.location[0] == 0) {//if the block on the edge, it can not move
             return false;
         }
@@ -164,8 +181,10 @@ public class Operate {
                 || currentUser.currentBlocksArray[block.location[0] - 1][block.location[1]].number == block.number;
     }
 
-
-    public static boolean ifCanMoveLeft(Block block, User currentUser) {// judge the block can move to left
+    /**
+     * The purpose of ifCanMoveLeft method is to judge that if a block can move left
+     */
+    public static boolean ifCanMoveLeft(Block block, User currentUser) {
         if (block.location[1] == 0) {
             return false;
         }
@@ -183,9 +202,11 @@ public class Operate {
 
     }
 
-
-    public static boolean ifCanMoveDown(Block block, User currentUser) {// judge the block can move to down
-        if (block.location[0] == App.interfaceSize - 1) {
+    /**
+     * The purpose of ifCanMoveDown method is to judge that if a block can move down
+     */
+    public static boolean ifCanMoveDown(Block block, User currentUser) {
+        if (block.location[0] == currentUser.currentBlocksArray.length - 1) {
             return false;
         }
 
@@ -201,9 +222,11 @@ public class Operate {
                 || currentUser.currentBlocksArray[block.location[0] + 1][block.location[1]].number == block.number;
     }
 
-
-    public static boolean ifCanMoveRight(Block block, User currentUser) {// judge the block can move to right
-        if (block.location[1] == App.interfaceSize - 1) {
+    /**
+     * The purpose of ifCanMoveRight method is to judge that if a block can move right
+     */
+    public static boolean ifCanMoveRight(Block block, User currentUser) {
+        if (block.location[1] == currentUser.currentBlocksArray.length - 1) {
             return false;
         }
 
@@ -220,7 +243,9 @@ public class Operate {
 
     }
 
-
+    /**
+     * The purpose of isEnd method is to judge that if the game is ending
+     */
     public static boolean isEnd(User currentUser) {
         for (Block[] blocks : currentUser.currentBlocksArray) {
             for (Block block : blocks) {
@@ -232,6 +257,9 @@ public class Operate {
         return true;
     }
 
+    /**
+     * The purpose of isWin method is to judge that if the game is winning
+     */
     public static boolean isWin(Block[][] blocksArray) {
         int maxNum = 0;
         for (Block[] blocks : blocksArray) {

@@ -2,7 +2,7 @@ package Game2048_test;
 
 import IO.OutputInterface;
 import IO.SaveUsersData;
-import Interface.CreatInterface;
+import Interface.CreatBlockArray;
 import Operation.Operate;
 import IO.GetUsersData;
 import Users.RegisteredUser;
@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class App {
     public static User currentUser;
-    public final static int interfaceSize = 2;//In order to make test convenient, reduce the interface size from 4 to 2
+    public final static int interfaceSize = 4;//In order to make test convenient, reduce the interface size from 4 to 2
     public final static int WINNUM = 16;
     public static String userDataPath = "src\\UserData\\Data.txt";
 
@@ -46,7 +46,9 @@ public class App {
         end(usersData, username, userDataPath);
 
     }
-
+    /**
+     * The purpose of begin method is to deal with the beginning part
+     */
     public static void begin(Map<String, User> usersData, String username, String userDataPath) {
         Scanner in = new Scanner(System.in);
         if (usersData != null && usersData.containsKey(username)) {//if username in the local data, the user is a registered user
@@ -101,10 +103,13 @@ public class App {
             }
         }
         System.out.println("==New Game==\n");
-        CreatInterface.setInterface(interfaceSize, currentUser);
+        CreatBlockArray.creatBlockArray(interfaceSize, currentUser);
         OutputInterface.outputInterface(currentUser.currentBlocksArray);
     }
 
+    /**
+     * The purpose of end method is to deal with the part of after game end
+     */
     public static void end(Map<String, User> usersData, String username, String userDataPath) {
         Scanner in = new Scanner(System.in);
         System.out.print("Save your record? (y/n): ");

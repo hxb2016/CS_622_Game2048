@@ -1,11 +1,15 @@
 package IO;
 
 import Block.Block;
-/**The purpose of this class is to show number blocks interface in console*/
+
+/**
+ * The purpose of this class is to show number blocks interface in console
+ */
 public class OutputInterface {
+    /**
+     * this function is used to show and update the interface
+     */
     public static void outputInterface(Block[][] blocksArray) {
-        /*
-         * this function is used to show the interface*/
 
         for (Block[] blocks : blocksArray) {
             for (int j = 0; j < blocks.length; j++) {

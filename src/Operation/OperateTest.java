@@ -20,7 +20,7 @@ public class OperateTest {
     }
 
     public static void operationTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(4, new int[]{1, 0});
@@ -39,7 +39,7 @@ public class OperateTest {
     }
     @Test
     public void moveUpTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -81,7 +81,7 @@ public class OperateTest {
     }
     @Test
     public void moveLeftTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -121,9 +121,10 @@ public class OperateTest {
         assertEquals(0, currentUser.currentBlocksArray[1][1].number);
 
     }
+
     @Test
     public void moveDownTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -165,7 +166,7 @@ public class OperateTest {
     }
     @Test
     public void moveRightTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -207,7 +208,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveUpTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -233,7 +234,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveLeftTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -259,7 +260,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveDownTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -285,7 +286,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveRightTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -311,7 +312,7 @@ public class OperateTest {
     }
     @Test
     public void isEndTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -348,7 +349,7 @@ public class OperateTest {
     }
     @Test
     public void isWinTest() {
-        //Creat example data
+        //Creat example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});

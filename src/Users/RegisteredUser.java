@@ -3,7 +3,7 @@ package Users;
 import Block.Block;
 
 /**
- * The purpose of this class is creat a registered user
+ * The purpose of this class is creat a registered user by given username, age and gender
  */
 public class RegisteredUser extends User {
     public Block[][] lastBlocksArray;
@@ -16,6 +16,9 @@ public class RegisteredUser extends User {
         super(name, age, gender);
     }
 
+    /**
+     * The purpose of setData method is to set data when the game end
+     */
     public void setData() {
         this.lastBlocksArray = this.currentBlocksArray;
         this.lastTakeTime = this.currentTakeTime;
@@ -33,16 +36,25 @@ public class RegisteredUser extends User {
 
     }
 
+    /**
+     * The purpose of getInformation method is to get username, age and gender
+     */
     @Override
     public String getInformation() {
         return "Username: " + this.username + "; Age: " + this.age + "; Gender: " + this.gender;
     }
 
+    /**
+     * The purpose of getType method is to get type of user object
+     */
     @Override
     public String getType() {
         return "RegisteredUser";
     }
 
+    /**
+     * The purpose of setIntroduce method is to set some information about users
+     */
     @Override
     public void setIntroduce(String introduction) {
         this.introduce = introduction;

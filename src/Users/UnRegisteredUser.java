@@ -11,6 +11,9 @@ public class UnRegisteredUser extends User {
         return "You have not registered.";
     }
 
+    /**
+     * The purpose of getType method is to get type of user object
+     */
     @Override
     public String getType() {
         return "UnRegisteredUser";

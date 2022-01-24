@@ -4,10 +4,13 @@ import Block.RandomBlock;
 import Block.Block;
 import Block.InsideBlock;
 import Users.User;
-/**The purpose of this class is to init the game*/
-public class CreatInterface {
 
-    public static void setInterface(int size, User currentUser) {
+/**
+ * The purpose of this class is to init the BlocksArray in the game
+ */
+public class CreatBlockArray {
+
+    public static void creatBlockArray(int size, User currentUser) {
         //
         currentUser.currentBlocksArray = new Block[size][size];
         for (int i = 0; i < currentUser.currentBlocksArray.length; i++) {
@@ -16,6 +19,8 @@ public class CreatInterface {
             }
         }
 
+
+        //Creat two random Blocks and put them into the blocksArray
         Block randomBlock1 = new RandomBlock(currentUser);
         currentUser.currentBlocksArray[randomBlock1.location[0]][randomBlock1.location[1]] = randomBlock1;
 

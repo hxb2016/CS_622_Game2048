@@ -36,9 +36,13 @@ public class AppTest {
         //Start a New Game? (y/n): y
         //==New Game==
 
-        //2       *
+        //*       *       *       *
 
-        //*       2
+        //4       *       *       *
+
+        //*       *       4       *
+
+        //*       *       *       *
 
 
         System.out.println("\nTest_2 for UnRegistered user\n");
@@ -53,9 +57,13 @@ public class AppTest {
         //Start a New Game? (y/n): y
         //==New Game==
 
-        //2       *
+        //*       *       *       *
 
-        //*       2
+        //*       *       *       *
+
+        //2       *       *       4
+
+        //*       *       *       *
     }
 
     public static void testEnd() {
