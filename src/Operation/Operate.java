@@ -267,6 +267,6 @@ public class Operate {
                 maxNum = Math.max(maxNum, block.number);
             }
         }
-        return maxNum >= App.WINNUM;
+        return maxNum >= App.WinNum;
     }
 }

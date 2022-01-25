@@ -368,7 +368,7 @@ public class OperateTest {
         b1 = new InsideBlock(2, new int[]{0, 0});
         b2 = new InsideBlock(4, new int[]{0, 1});
         b3 = new InsideBlock(4, new int[]{1, 0});
-        b4 = new InsideBlock(App.WINNUM, new int[]{1, 1});
+        b4 = new InsideBlock(App.WinNum, new int[]{1, 1});
 
         blocksArray = new Block[][]{
                 {b1, b2},//2    4
