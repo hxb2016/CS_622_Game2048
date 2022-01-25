@@ -22,7 +22,7 @@ public class RegisteredUser extends User {
     public void setData() {
         this.lastBlocksArray = this.currentBlocksArray;
         this.lastTakeTime = this.currentTakeTime;
-        if (this.currentResult.endsWith("win")) {
+        if (this.currentResult.equals("win")) {
             if (this.bestBlocksArray == null) {
                 this.bestTakeTime = this.currentTakeTime;
                 this.bestBlocksArray = this.currentBlocksArray;
