@@ -17,15 +17,15 @@ import java.util.Scanner;
 /**
  * The purpose of this class is to run the game
  *
- * Notes: In order to save time for test, I change the winning number from 2048 to 16 (WINNUM = 16).
+ * Notes: In order to save time for test, I change the winning number from 2048 to 16 (WinNum = 16).
  *        Because it will very long time if the number is too large.
  *
  *        In this version, any number is larger than 16, the game will judged that you win.
  */
 public class App {
+    public final static int WinNum = 16;
+    public final static int interfaceSize = 4;
     public static User currentUser;
-    public final static int interfaceSize = 4;//In order to make test convenient, reduce the interface size from 4 to 2
-    public final static int WINNUM = 16;
     public static String userDataPath = "src\\UserData\\Data.txt";
 
     public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class App {
         System.out.print("Please enter your username to login: ");
         Scanner in = new Scanner(System.in);
         String username = in.next();
-        Map<String, User> usersData = null;//get local user data(but function I have not finished)
+        Map<String, User> usersData = null;
         try {
             usersData = GetUsersData.getUsersData(userDataPath);//Get users' data
             if (usersData == null) {
