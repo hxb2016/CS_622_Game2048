@@ -10,33 +10,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class OperateTest {
-    public static void main(String[] args) {
-        operationTest();
-        //you will see below output in console, when you enter command 'd'
-        // (At the same time the function will produce a random number at top left or bottom left):
-        //4       2
-
-        //*       4
-    }
-
-    public static void operationTest() {
-        //Creat example blocksArray
-        Block b1 = new InsideBlock(2, new int[]{0, 0});
-        Block b2 = new InsideBlock(0, new int[]{0, 1});
-        Block b3 = new InsideBlock(4, new int[]{1, 0});
-        Block b4 = new InsideBlock(0, new int[]{1, 1});
-
-        Block[][] blocksArray = new Block[][]{
-                {b1, b2},//2    0
-                {b3, b4},//0    4
-        };
-
-        User currentUser = new RegisteredUser("Xiaobing", 29, "male");
-        currentUser.currentBlocksArray = blocksArray;
-
-        //Start test
-        Operate.operation(currentUser);
-    }
     @Test
     public void moveUpTest() {
         //Creat example blocksArray

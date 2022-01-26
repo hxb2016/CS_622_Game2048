@@ -17,11 +17,9 @@ import java.util.Scanner;
 
 /**
  * The purpose of this class is to run the game
- * <p>
  * Notes: In order to save time for test, I change the winning number from 2048 to 16 (WinNum = 16).
  * Because it will very long time if the number is too large.
- * <p>
- * In this version, any number is larger than 16, the game will judged that you win.
+ *In this version, any number is larger than 16, the game will judged that you win.
  */
 public class App {
     public final static int WinNum = 16;
