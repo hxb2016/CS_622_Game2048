@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class GetEmptyLocationTest {
-    //Creat example blocksArray
+    //Create example blocksArray
     Block b1 = new InsideBlock(2, new int[]{0, 0});
     Block b2 = new InsideBlock(0, new int[]{0, 1});
     Block b3 = new InsideBlock(4, new int[]{1, 0});

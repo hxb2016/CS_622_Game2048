@@ -1,6 +1,6 @@
 package Users;
 
-/**The purpose of this class is creat an unregistered user*/
+/**The purpose of this class is to create an unregistered user*/
 public class UnRegisteredUser extends User {
 
     public UnRegisteredUser() {

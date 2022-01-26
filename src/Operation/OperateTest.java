@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class OperateTest {
     @Test
     public void moveUpTest() {
-        //Creat example blocksArray
+        //Create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -54,7 +54,7 @@ public class OperateTest {
     }
     @Test
     public void moveLeftTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -97,7 +97,7 @@ public class OperateTest {
 
     @Test
     public void moveDownTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -139,7 +139,7 @@ public class OperateTest {
     }
     @Test
     public void moveRightTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -181,7 +181,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveUpTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -207,7 +207,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveLeftTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -233,7 +233,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveDownTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -259,7 +259,7 @@ public class OperateTest {
     }
     @Test
     public void ifCanMoveRightTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -285,7 +285,7 @@ public class OperateTest {
     }
     @Test
     public void isEndTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -303,7 +303,7 @@ public class OperateTest {
         assertFalse(Operate.isEnd(currentUser));
 
         //////////////////////////////////////////////
-        //Creat example data
+        //create example data
         b1 = new InsideBlock(2, new int[]{0, 0});
         b2 = new InsideBlock(4, new int[]{0, 1});
         b3 = new InsideBlock(4, new int[]{1, 0});
@@ -322,7 +322,7 @@ public class OperateTest {
     }
     @Test
     public void isWinTest() {
-        //Creat example blocksArray
+        //create example blocksArray
         Block b1 = new InsideBlock(2, new int[]{0, 0});
         Block b2 = new InsideBlock(0, new int[]{0, 1});
         Block b3 = new InsideBlock(0, new int[]{1, 0});
@@ -337,7 +337,7 @@ public class OperateTest {
         assertFalse(Operate.isWin(blocksArray));
 
         //////////////////////////////////////////////
-        //Creat example data
+        //create example data
         b1 = new InsideBlock(2, new int[]{0, 0});
         b2 = new InsideBlock(4, new int[]{0, 1});
         b3 = new InsideBlock(4, new int[]{1, 0});

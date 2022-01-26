@@ -11,14 +11,14 @@ public abstract class User implements Serializable {
     public int age;
     public String gender;
     public String introduce;
-    public Block[][] currentBlocksArray;//it is used to creat number block interface
+    public Block[][] currentBlocksArray;//it is used to create number block interface
     public long currentTakeTime;// it is used to record the timer users take
     public String currentResult;// it is used to record win or fail
 
-    public User() {//this constructor is used to creat Unregistered user
+    public User() {//this constructor is used to create Unregistered user
     }
 
-    public User(String username, int age, String gender) {//this constructor is used to creat Registered user
+    public User(String username, int age, String gender) {//this constructor is used to create Registered user
         this.username = username;
         this.age = age;
         this.gender = gender;

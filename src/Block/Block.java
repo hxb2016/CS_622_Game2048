@@ -2,7 +2,7 @@
 package Block;
 import java.io.Serializable;
 /**
- * Purpose of this class is creat a Block Object
+ * Purpose of this class is to create a Block Object
  */
 public class Block implements Serializable {
     public static final long serialVersionUID = 1L;

@@ -3,7 +3,7 @@ package Users;
 import Block.Block;
 
 /**
- * The purpose of this class is creat a registered user by given username, age and gender
+ * The purpose of this class is to create a registered user by given username, age and gender
  */
 public class RegisteredUser extends User {
     public Block[][] lastBlocksArray;

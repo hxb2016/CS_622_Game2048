@@ -8,9 +8,9 @@ import Users.User;
 /**
  * The purpose of this class is to init the BlocksArray in the game
  */
-public class CreatBlockArray {
+public class CreateBlockArray {
 
-    public static void creatBlockArray(int size, User currentUser) {
+    public static void createBlockArray(int size, User currentUser) {
         //
         currentUser.currentBlocksArray = new Block[size][size];
         for (int i = 0; i < currentUser.currentBlocksArray.length; i++) {

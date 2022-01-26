@@ -2,7 +2,7 @@ package Game2048_test;
 
 import IO.OutputInterface;
 import IO.SaveUsersData;
-import Interface.CreatBlockArray;
+import Interface.CreateBlockArray;
 import Operation.Operate;
 import IO.GetUsersData;
 import Users.RegisteredUser;
@@ -108,7 +108,7 @@ public class App {
             }
         }
         System.out.println("==New Game==\n");
-        CreatBlockArray.creatBlockArray(interfaceSize, currentUser);
+        CreateBlockArray.createBlockArray(interfaceSize, currentUser);
         OutputInterface.outputInterface(currentUser.currentBlocksArray);
     }
 
