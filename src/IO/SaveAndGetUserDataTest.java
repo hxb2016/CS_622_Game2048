@@ -5,6 +5,7 @@ import Users.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  * Because you need save data first, and then you can get it, I combine the two test
  */
 public class SaveAndGetUserDataTest {
-    static String userDataPath = "src\\UserData\\DataTest.txt";
+    static String userDataPath = "src" + File.separator + "UserData" + File.separator + "DataTest.txt";
 
     @Test
     public void saveAndGetUsersDataTest() throws IOException, ClassNotFoundException {

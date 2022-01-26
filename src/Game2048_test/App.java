@@ -9,6 +9,7 @@ import Users.RegisteredUser;
 import Users.UnRegisteredUser;
 import Users.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,17 +17,17 @@ import java.util.Scanner;
 
 /**
  * The purpose of this class is to run the game
- *
+ * <p>
  * Notes: In order to save time for test, I change the winning number from 2048 to 16 (WinNum = 16).
- *        Because it will very long time if the number is too large.
- *
- *        In this version, any number is larger than 16, the game will judged that you win.
+ * Because it will very long time if the number is too large.
+ * <p>
+ * In this version, any number is larger than 16, the game will judged that you win.
  */
 public class App {
     public final static int WinNum = 16;
     public final static int interfaceSize = 4;
     public static User currentUser;
-    public static String userDataPath = "src\\UserData\\Data.txt";
+    public static String userDataPath = "src" + File.separator + "UserData" + File.separator + "Data.txt";
 
     public static void main(String[] args) {
         System.out.println("==Welcome to 2048 Game==");
@@ -43,7 +44,7 @@ public class App {
             System.out.println("Error happened when get data.");
             e.printStackTrace();
         }
-        
+
         begin(usersData, username, userDataPath);
 
         Operate.operation(currentUser);
@@ -51,6 +52,7 @@ public class App {
         end(usersData, username, userDataPath);
 
     }
+
     /**
      * The purpose of begin method is to deal with the beginning part
      */
